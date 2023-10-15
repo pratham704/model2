@@ -43,7 +43,6 @@ async def get_prediction(
     mental_vs_physical: int = Query(1, description="Mental vs Physical"),
     obs_consequence: int = Query(0, description="Observed Consequence")
 ):
-    # Check if any parameters are missing
   with open('main_model_git.pkl', 'rb') as f:
     model = joblib.load(f)  
 
@@ -85,7 +84,3 @@ async def get_prediction(
     yhat = model.predict(df)
 
     return {"prediction": int(yhat)}
-  
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
