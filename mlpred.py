@@ -5,15 +5,6 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-
-
-
-@app.get("/")
-async def root():
-    return {"message": "Hey, I'm here!"}
-
-
-
 class ScoringItem(BaseModel):
     Age: int
     Gender: int
@@ -38,7 +29,7 @@ class ScoringItem(BaseModel):
     mental_vs_physical: int
     obs_consequence: int
 
-@app.post('/pred')
+@app.post('/')
 async def scoring_endpoint(item: ScoringItem):
     with open('main_model_git.pkl', 'rb') as f:
         model = joblib.load(f)
@@ -48,6 +39,3 @@ async def scoring_endpoint(item: ScoringItem):
     yhat = model.predict(df)
     return {"prediction": int(yhat)}
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="localhost", port=8000)
