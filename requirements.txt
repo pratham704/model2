@@ -5,7 +5,7 @@ joblib==1.3.2
 numpy
 pandas
 
-
+scikit-learn
 uvicorn
 pydantic==2.4.2
 
