@@ -1,4 +1,4 @@
-ffrom fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException
 import pandas as pd
 import joblib
 from pydantic import BaseModel
@@ -13,12 +13,6 @@ async def root():
     return {"message": "Hey, I'm here!"}
 
 
-from fastapi import FastAPI, HTTPException
-import pandas as pd
-import joblib
-from pydantic import BaseModel
-
-app = FastAPI()
 
 class ScoringItem(BaseModel):
     Age: int
